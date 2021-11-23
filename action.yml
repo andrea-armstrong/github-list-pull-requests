@@ -1,5 +1,5 @@
-name: 'List Pull Requests'
-description: 'List pull requests of a given repostiory and return a list'
+name: 'GitHub List Pull Requests'
+description: 'List pull requests of a given repostiory and return all that match a certain criteria within a window of time'
 inputs:
   token:
     description: "Github token"
