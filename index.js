@@ -16,9 +16,7 @@ function listPullRequests(token, repoOwner, repo, state) {
 
 function filterDate(pr, targetDate) {
   var createdAt =new Date(pr.created_at)
-  console.log("Reviewing PR: " + pr.number + " with created date: " + createdAt + "against target date: " + targetDate)
   if (createdAt > targetDate) {
-    console.log("PR within time frame: " + pr.number)
     return true;
   }
   return false;
