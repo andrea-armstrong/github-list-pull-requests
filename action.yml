@@ -1,0 +1,21 @@
+name: 'List Pull Requests'
+description: 'List pull requests of a given repostiory and return a list'
+inputs:
+  token:
+    description: "Github token"
+    required: true
+    default: ''
+  state:
+    description: 'Pull request status (open/closed/all)'
+    required: false
+    default: 'all'
+  window:
+    description: 'Filter pull requests by window of time (hours)'
+    required: false
+    default: '24'
+outputs:
+  pullRequestNumbers:
+    description: "List of pull request numbers"
+runs:
+  using: 'node12'
+  main: 'index.js'
