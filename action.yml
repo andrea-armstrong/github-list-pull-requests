@@ -1,5 +1,8 @@
 name: 'GitHub List Pull Requests'
 description: 'List pull requests of a given repostiory and return all that match a certain criteria within a window of time'
+branding:
+  icon: 'list'
+  color: 'blue'
 inputs:
   token:
     description: "Github token"
