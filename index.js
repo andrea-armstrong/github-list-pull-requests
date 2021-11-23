@@ -11,7 +11,7 @@ function listPullRequests(token, repoOwner, repo, state) {
     direction: 'desc',
     per_page: 100,
   });
-  return pullRequests.data;
+  return pullRequests;
 }
 
 function filterDate(pr, targetDate) {
@@ -32,16 +32,15 @@ try {
   const token = core.getInput('token');
   const repoOwner = github.context.repo.owner;
   const repo = github.context.repo.repo;
-  const state = core.getInput('state')
-
-  let list = listPullRequests(token, repoOwner, repo, state)
-  
+  const state = core.getInput('state');
   let filterSec = parseInt(core.getInput('window')) * 360
-  let targetDate = new Date(Date.now() - filterSec)
-
-  let filtered = list.filter(function(pr) { return filterDate(pr, targetDate); });
-  outputNumbers(filtered);
-
+  let targetDate = new Date(Date.now() - filterSec);
+  
+  let prom = listPullRequests(token, repoOwner, repo, state);
+  prom.then(function (list) {
+    let filtered = list.data.filter(function(pr) { return filterDate(pr, targetDate); });
+    outputNumbers(filtered);
+  });
 } catch (error) {
   core.setFailed(error.message);
 }

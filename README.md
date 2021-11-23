@@ -39,3 +39,14 @@ List of all pull request numbers that match the given criteria
 - name: output
   run: echo '${{ steps.list.outputs.pullRequestNumbers }}'
 ```
+
+## Development
+
+This repository uses `@vercel/ncc` to compile the code and modules into one file for distribution.
+
+(Currently manual) To re-compile code, run:
+```
+ncc build index.js --license licenses.txt
+```
+
+Then be sure to commit everything in the `dist/*` folder for a new release.
