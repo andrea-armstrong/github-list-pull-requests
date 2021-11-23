@@ -8460,6 +8460,7 @@ function listPullRequests(token, repoOwner, repo, state) {
 
 function filterDate(pr, targetDate) {
   var createdAt = Date.parse(pr.created_at)
+  console.log("Reviewing PR: " + pr.number + " with created date: " + pr.created_at)
   if (createdAt > targetDate) {
     return true;
   }
