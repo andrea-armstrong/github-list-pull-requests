@@ -16,7 +16,7 @@ function listPullRequests(token, repoOwner, repo, state) {
 
 function filterDate(pr, targetDate) {
   var createdAt =new Date(pr.created_at)
-  console.log("Reviewing PR: " + pr.number + " with created date: " + pr.created_at + "against target date: " + targetDate)
+  console.log("Reviewing PR: " + pr.number + " with created date: " + createdAt + "against target date: " + targetDate)
   if (createdAt > targetDate) {
     console.log("PR within time frame: " + pr.number)
     return true;
@@ -35,8 +35,8 @@ try {
   const repoOwner = github.context.repo.owner;
   const repo = github.context.repo.repo;
   const state = core.getInput('state');
-  let filterSec = parseInt(core.getInput('window')) * 360
-  let targetDate = new Date(Date.now() - filterSec);
+  let filterMs = parseInt(core.getInput('window')) * 3600000 // convert to milliseconds
+  let targetDate = new Date(Date.now() - filterMs);
   
   let prom = listPullRequests(token, repoOwner, repo, state);
   prom.then(function (list) {
